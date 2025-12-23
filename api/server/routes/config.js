@@ -61,6 +61,11 @@ router.get('/', async function (req, res) {
     /** @type {TStartupConfig} */
     const payload = {
       appTitle: process.env.APP_TITLE || 'LibreChat',
+      adsense: {
+        enabled: isEnabled(process.env.ADSENSE_ENABLED),
+        clientId: process.env.ADSENSE_CLIENT_ID || '',
+        slotId: process.env.ADSENSE_SLOT_ID || '',
+      },
       socialLogins: appConfig?.registration?.socialLogins ?? defaultSocialLogins,
       discordLoginEnabled: !!process.env.DISCORD_CLIENT_ID && !!process.env.DISCORD_CLIENT_SECRET,
       facebookLoginEnabled:
